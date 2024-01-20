@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="music_player_warpper">
+        <audio src=""></audio>
+        <div class="music_player_bg"></div>
+        <div class="music_player">
+            <div class="music_player_loader ">
+                <img src="/images/loader.svg" alt="">
+            </div>
+            <div class="music_player_header">
+                <span class="">
+                    <i class="material-icons">expand_more</i>
+                </span>
+                <div class="music_player_title">
+                    <h4>Energic music</h4>
+                    <p>Playlist</p>
+                </div>
+                <span class="list_icon">
+                    <i class="material-icons">playlist_play</i>
+                </span>
+            </div>
+
+            <div class="music_player_image">
+                <img src="images/musicImage.jpg" alt="">
+            </div>
+
+            <div class="music_player_text">
+                <h3>----------</h3>
+                <p>------------</p>
+            </div>
+
+            <div class="music_player_slide">
+                <div class="music_player_progressBar">
+                    <div class="music_player_progress"></div>
+                </div>
+                <div class="music_player_timer">
+                    <span class="currentTime">0:00</span>
+                    <span class="duration">00:00</span>
+                </div>
+            </div>
+
+            <div class="music_player_controller">
+                <i class="material-icons">repeat</i>
+
+                <div class="music_player_middle">
+                    <i class="material-icons">fast_rewind</i>
+                    <span class="palyPauseIcon">
+                        <i class="material-icons">play_arrow</i>
+                    </span>
+                    <i class="material-icons">fast_forward</i>
+                </div>
+
+                <i class="material-icons">more_vert</i>
+
+            </div>
+
+
+            <div class="music_player_list">
+
+                <div class="music_player_header">
+                    <span class="close_list">
+                        <i class="material-icons">expand_more</i>
+                    </span>
+                    <div class="music_player_title">
+                        <h4>Energic music</h4>
+                        <p>Playlist</p>
+                    </div>
+
+                    <span>
+                        <i class="material-icons">playlist_play</i>
+                    </span>
+                </div>
+                <ul class="music_player_list_items">
+
+                    <li class="list_item isPlaying">
+                        <div class="list_item_sound">
+                            <img src="/images//musicImage.jpg" alt="">
+                            <div class="list_item_text">
+                                <h4>This world</h4>
+                                <p>Nora Van Elken</p>
+                            </div>
+                        </div>
+
+                        <div class="list_item_time">
+                            <span class="time">2:05</span>
+                            <div class="playing_indicator">
+                                <span style="height: 80%;" class="playing_indicator_bar"></span>
+                                <span style="height: 90%;" class="playing_indicator_bar"></span>
+                                <span style="height: 50%;" class="playing_indicator_bar"></span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list_item ">
+                        <div class="list_item_sound">
+                            <img src="/images//musicImage.jpg" alt="">
+                            <div class="list_item_text">
+                                <h4>This world</h4>
+                                <p>Nora Van Elken</p>
+                            </div>
+                        </div>
+
+                        <div class="list_item_time">
+                            <span class="time">2:05</span>
+                            <div class="playing_indicator">
+                                <span style="height: 80%;" class="playing_indicator_bar"></span>
+                                <span style="height: 90%;" class="playing_indicator_bar"></span>
+                                <span style="height: 50%;" class="playing_indicator_bar"></span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list_item">
+                        <div class="list_item_sound">
+                            <img src="/images//musicImage.jpg" alt="">
+                            <div class="list_item_text">
+                                <h4> A Head Full Dream</h4>
+                                <p>Cold play</p>
+                            </div>
+                        </div>
+
+                        <div class="list_item_time">
+                            <span class="time">2:05</span>
+                            <div class="playing_indicator">
+                                <span class="playing_indicator_bar"></span>
+                                <span style="height: 50%;" class="playing_indicator_bar"></span>
+                                <span class="playing_indicator_bar"></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
+
+<!-- 
+repeat_one 
+play_arrow
+-->

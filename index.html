@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand&display=swap"
         rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -18,7 +19,9 @@
 
     <div class="music_player_warpper">
         <audio src=""></audio>
-        <div class="music_player_bg"></div>
+        <div class="music_player_bg">
+            <img src="images/musicBg.jpg" alt="">
+        </div>
         <div class="music_player">
             <div class="music_player_loader ">
                 <img src="/images/loader.svg" alt="">
@@ -56,17 +59,23 @@
             </div>
 
             <div class="music_player_controller">
-                <i class="material-icons">repeat</i>
+                <span class="listen_style_icon">
+                    <i class="material-icons">repeat</i>
+                </span>
 
                 <div class="music_player_middle">
-                    <i class="material-icons">fast_rewind</i>
+                    <span id="prev" class="prevBtn">
+                        <i class="material-icons">skip_previous</i>
+                    </span>
                     <span class="palyPauseIcon">
                         <i class="material-icons">play_arrow</i>
                     </span>
-                    <i class="material-icons">fast_forward</i>
+                    <span id="next" class="nextBtn">
+                        <i class="material-icons">skip_next</i>
+                    </span>
                 </div>
 
-                <i class="material-icons">more_vert</i>
+                <i class="material-icons">favorite_border</i>
 
             </div>
 
@@ -88,7 +97,7 @@
                 </div>
                 <ul class="music_player_list_items">
 
-                    <li class="list_item isPlaying">
+                    <li class="list_item">
                         <div class="list_item_sound">
                             <img src="/images//musicImage.jpg" alt="">
                             <div class="list_item_text">
@@ -118,10 +127,15 @@
 
                         <div class="list_item_time">
                             <span class="time">2:05</span>
+
                             <div class="playing_indicator">
-                                <span style="height: 80%;" class="playing_indicator_bar"></span>
+                                <dotlottie-player
+                                src="https://lottie.host/ba59eb94-4d4b-476a-805e-605e81428de8/KROcRjolYE.json"
+                                background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+                                autoplay></dotlottie-player>
+                                <!-- <span style="height: 80%;" class="playing_indicator_bar"></span>
                                 <span style="height: 90%;" class="playing_indicator_bar"></span>
-                                <span style="height: 50%;" class="playing_indicator_bar"></span>
+                                <span style="height: 50%;" class="playing_indicator_bar"></span> -->
                             </div>
                         </div>
                     </li>
@@ -152,6 +166,8 @@
 
 
     <script src="app.js"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
 </body>
 
 </html>

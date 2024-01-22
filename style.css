@@ -88,16 +88,38 @@ body {
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     margin: 30px auto;
-    transition: .5s;
-    
+    transition: 1s;
+    position: relative;
 }
 
 .music_player_image img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     box-shadow: 0px 0px 30px #ffffff30;
     border-radius: inherit;
+    z-index: 2;
+
+}
+
+.music_player_image .element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-top: 20px solid #f0f0f1;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    transform-origin: top left;
+    transition: .3s;
+    z-index: 1;
 }
 
 .music_player_text {

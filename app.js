@@ -10,6 +10,8 @@ const prevbtn = document.querySelector('.prevBtn')
 const listen_style_icon = document.querySelector('.listen_style_icon i')
 // const audio = new Audio()
 
+
+
 let isShowList = false
 let songsList = []
 let isSondStart = false
@@ -17,8 +19,11 @@ let isDataLoad = false
 let isPlay = false
 let currentIndex = 0
 let listenSstyle = 'repeat'
+// const colors = ['#3498db', '#2ecc71', '#e74c3c', '#f39c12', '#9b59b6'];
+const colors = ['#1D2B53', '#7E2553', '#FF004D','#FAEF5D']
 
-const url = 'https://shazam.p.rapidapi.com/charts/track?pageSize=9';
+// const url = 'http://localhost:3000/api/audio';
+const url = 'https://shazam.p.rapidapi.com/charts/track?pageSize=9'
 const options = {
     method: 'GET',
     headers: {
@@ -43,9 +48,7 @@ const getSongFormApi = async () => {
 
     } catch (error) {
         console.log(error);
-        alert('Check your connection')
-        getSongFormApi()
-
+        // alert('Check your connection')
     }
 }
 
@@ -112,6 +115,8 @@ const playSongOnClick = (index) => {
 }
 
 const nextPrevSong = () => {
+    music_player_image.style.transition = 'none'
+    music_player_image.style.transform = 'none'
     isSondStart = true
     isPlay = true
     loadAudio({
@@ -131,7 +136,7 @@ const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
     const list_items = document.querySelectorAll('.list_item')
     const music_player_bg = document.querySelector('.music_player_bg img')
 
-    
+
     list_items.forEach(item => item.classList.remove('isPlaying'))
     list_items[currentIndex].classList.add('isPlaying')
     music_player_bg.src = background
@@ -140,6 +145,8 @@ const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
     music_player_artist.innerText = artist
     audio.src = uri
     playSong(isPlaying)
+    audio.crossOrigin = "anonymous";
+
 }
 
 const playSong = (isPlaying) => {
@@ -174,6 +181,7 @@ audio.addEventListener('loadeddata', (event) => {
     const durationEl = document.querySelector('.music_player_timer .duration')
     const duration = audio.duration
     durationEl.innerText = formatTime(duration)
+    setTimeout(() => { music_player_image.style.transition = '1s'},0)
 })
 
 audio.addEventListener('timeupdate', event => {
@@ -188,9 +196,14 @@ audio.addEventListener('timeupdate', event => {
     music_player_progress.style.width = width + '%'
     music_player_image.style.transform = `rotate(${currentTime * 10}deg)`
 
+
 })
 
 audio.addEventListener('ended', () => {
+    music_player_image.style.transition = 'none'
+    music_player_image.style.transform = 'none'
+    setTimeout(() => { music_player_image.style.transition = '1s'},10)
+
     switch (listenSstyle) {
         case 'repeat':
             currentIndex = currentIndex < songsList.length - 1 ? currentIndex + 1 : 0
@@ -200,13 +213,13 @@ audio.addEventListener('ended', () => {
             audio.play()
             break;
         case 'shuffle':
-            console.log('currentIndex',currentIndex)
+            console.log('currentIndex', currentIndex)
             let newIndex
             do {
                 newIndex = Math.floor(Math.random() * songsList.length)
             } while (newIndex === currentIndex);
             currentIndex = newIndex
-            console.log('currentIndex',currentIndex)
+            console.log('currentIndex', currentIndex)
 
             loadAudio({
                 artist: songsList[currentIndex]?.artists[0]?.alias,
@@ -274,4 +287,46 @@ palyPauseIcon.addEventListener('click', () => {
 })
 
 
+// AUDIO VISUALISTATION
 
+const clamp = (num, min, max) => {
+    if(num >= max) return max;
+    if(num <= min) return min;
+    return num;
+}
+
+const audioVisualisation = () => {
+    window.AudioContext = window.AudioContext || window.webkitAudioContext
+    const audioContext = new window.AudioContext()
+    const analyser = audioContext.createAnalyser()
+    const source = audioContext.createMediaElementSource(audio)
+    source.connect(analyser)
+    source.connect(audioContext.destination)
+    analyser.fftSize = 64
+    const bufferLength = analyser.frequencyBinCount
+    let dataArray = new Uint8Array(bufferLength)
+
+    let elements = []
+    for (let i = 0; i < bufferLength; i++) {
+        const element = document.createElement('span')
+        element.classList.add('element')
+        elements.push(element)
+        music_player_image.appendChild(element)
+    }
+
+    document.querySelectorAll('.element')
+    .forEach(item => item.style.borderTop = `10px solid ${colors[Math.floor(Math.random() * colors.length )]}`)
+   
+    const update = () => {
+        requestAnimationFrame(update)
+        analyser.getByteFrequencyData(dataArray)
+       
+        for (let i = 0; i < bufferLength; i++) {
+            let item = dataArray[i];
+            item = item > 150 ? item / 1.5 : item * 1.5;
+            elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 150)}px)`;
+        }
+    }
+    update()
+}
+audioVisualisation()

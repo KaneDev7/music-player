@@ -8,7 +8,6 @@ const audio = document.querySelector('audio')
 const nextBtn = document.querySelector('.nextBtn')
 const prevbtn = document.querySelector('.prevBtn')
 const listen_style_icon = document.querySelector('.listen_style_icon i')
-// const audio = new Audio()
 
 
 
@@ -19,11 +18,10 @@ let isDataLoad = false
 let isPlay = false
 let currentIndex = 0
 let listenSstyle = 'repeat'
-// const colors = ['#3498db', '#2ecc71', '#e74c3c', '#f39c12', '#9b59b6'];
-const colors = ['#1D2B53', '#7E2553', '#FF004D','#FAEF5D']
 
-// const url = 'http://localhost:3000/api/audio';
-const url = 'https://shazam.p.rapidapi.com/charts/track?pageSize=9'
+const colors = ['#1D2B53', '#7E2553', '#FF004D', '#FAEF5D']
+
+const url = 'https://shazam.p.rapidapi.com/charts/track?pageSize=8'
 const options = {
     method: 'GET',
     headers: {
@@ -56,7 +54,6 @@ const getSongFormApi = async () => {
 const insertSongList = () => {
 
     const liList = songsList.map((item, index) => {
-        console.log(item)
         const artist = item?.artists?.map((element, i) => element?.alias).join('')
         const uri = item?.hub?.actions?.map((element, i) => element?.uri)[1]
 
@@ -145,7 +142,6 @@ const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
     music_player_artist.innerText = artist
     audio.src = uri
     playSong(isPlaying)
-    audio.crossOrigin = "anonymous";
 
 }
 
@@ -153,6 +149,7 @@ const playSong = (isPlaying) => {
     palyPauseIcon.innerText = isPlaying ? 'pause' : 'play_arrow'
     if (!isPlaying) return audio.pause()
     audio.play()
+    audio.crossOrigin = "anonymous";
 }
 
 // controll
@@ -181,7 +178,7 @@ audio.addEventListener('loadeddata', (event) => {
     const durationEl = document.querySelector('.music_player_timer .duration')
     const duration = audio.duration
     durationEl.innerText = formatTime(duration)
-    setTimeout(() => { music_player_image.style.transition = '1s'},0)
+    setTimeout(() => { music_player_image.style.transition = '1s' }, 0)
 })
 
 audio.addEventListener('timeupdate', event => {
@@ -202,7 +199,7 @@ audio.addEventListener('timeupdate', event => {
 audio.addEventListener('ended', () => {
     music_player_image.style.transition = 'none'
     music_player_image.style.transform = 'none'
-    setTimeout(() => { music_player_image.style.transition = '1s'},10)
+    setTimeout(() => { music_player_image.style.transition = '1s' }, 10)
 
     switch (listenSstyle) {
         case 'repeat':
@@ -279,6 +276,7 @@ palyPauseIcon.addEventListener('click', () => {
             background: songsList[currentIndex]?.images?.background,
             isPlaying: true
         })
+        audioVisualisation()
         return isSondStart = true
     } else {
         playSong(isPlay)
@@ -290,12 +288,13 @@ palyPauseIcon.addEventListener('click', () => {
 // AUDIO VISUALISTATION
 
 const clamp = (num, min, max) => {
-    if(num >= max) return max;
-    if(num <= min) return min;
+    if (num >= max) return max;
+    if (num <= min) return min;
     return num;
 }
 
 const audioVisualisation = () => {
+
     window.AudioContext = window.AudioContext || window.webkitAudioContext
     const audioContext = new window.AudioContext()
     const analyser = audioContext.createAnalyser()
@@ -315,18 +314,19 @@ const audioVisualisation = () => {
     }
 
     document.querySelectorAll('.element')
-    .forEach(item => item.style.borderTop = `10px solid ${colors[Math.floor(Math.random() * colors.length )]}`)
-   
+        .forEach(item => item.style.borderTop = `10px solid ${colors[Math.floor(Math.random() * colors.length)]}`)
+
     const update = () => {
-        requestAnimationFrame(update)
         analyser.getByteFrequencyData(dataArray)
-       
+
         for (let i = 0; i < bufferLength; i++) {
             let item = dataArray[i];
             item = item > 150 ? item / 1.5 : item * 1.5;
             elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 150)}px)`;
         }
+        requestAnimationFrame(update)
+
     }
     update()
 }
-audioVisualisation()
+

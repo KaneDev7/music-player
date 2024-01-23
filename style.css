@@ -13,21 +13,21 @@ body {
     font-family: poppins, sans-serif;
     background: linear-gradient(180deg, #000000c4 42%, #9e3131 100%); 
 }
+body img{
+    width: 100%;
+    object-fit: cover;
+}
 
 .music_player_warpper {
     position: relative;
     width: 400px;
-    min-height: 650px;
     overflow: hidden;
     border-radius: 10px;
-
-    
 }
 
 .music_player_bg {
     width: 100%;
     height: 100%;
-    /* background: url('./images/musicBg.jpg') center center; */
     background-size: cover;
     position: absolute;
     inset: 0;
@@ -118,6 +118,7 @@ body {
     border-right: 15px solid transparent;
     border-left: 15px solid transparent;
     transform-origin: top left;
+    /* box-shadow: 2px 1px 2px 1px rgba(213, 7, 7, 0.773); */
     transition: .3s;
     z-index: 1;
 }
@@ -137,16 +138,14 @@ body {
 }
 
 .music_player_progressBar {
-    height: 2px;
+    height: 4px;
     background: #ffffff67;
     position: relative;
     border-radius: 10px;
     cursor: pointer;
     transition: .1s;
 }
-.music_player_progressBar:hover{
-    height: 4px;
-}
+
 .music_player_progress {
     width: 0%;
     position: absolute;
@@ -154,7 +153,7 @@ body {
     inset: 0;
     background: white;
     border-radius: 10px;
-
+    pointer-events: none;
 }
 
 /* .music_player_progress::after {
@@ -169,6 +168,22 @@ body {
     background: white;
 } */
 
+.music_player_slide_volume{
+    width: 100%;
+    height: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.music_player_slide_volume i{
+    font-size: 15px;
+}
+.music_player_slide_volume input{
+    width: 150px;
+    height: 100%;
+}
+
 .music_player_timer {
     display: flex;
     justify-content: space-between;
@@ -182,7 +197,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .music_player_middle {
@@ -271,6 +286,7 @@ body {
     width: 30px;
     height: 50px;
     display: flex;
+    align-items: center;
     gap: 5px;
     /* background: #850303; */
 }

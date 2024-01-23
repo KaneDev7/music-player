@@ -8,8 +8,10 @@ const audio = document.querySelector('audio')
 const nextBtn = document.querySelector('.nextBtn')
 const prevbtn = document.querySelector('.prevBtn')
 const listen_style_icon = document.querySelector('.listen_style_icon i')
-
-
+const music_player_progressBar = document.querySelector('.music_player_progressBar')
+const music_player_progress = document.querySelector('.music_player_progress')
+const currentTimeEl = document.querySelector('.music_player_timer .currentTime')
+const volumeEl = document.querySelector('.volume')
 
 let isShowList = false
 let songsList = []
@@ -18,6 +20,9 @@ let isDataLoad = false
 let isPlay = false
 let currentIndex = 0
 let listenSstyle = 'repeat'
+let duration = 0
+let currentTime = 0
+let rotateValue = 0
 
 const colors = ['#1D2B53', '#7E2553', '#FF004D', '#FAEF5D']
 
@@ -98,9 +103,14 @@ const insertDurationOnElelement = () => {
 
 
 const playSongOnClick = (index) => {
+    music_player_image.style.transition = 'none'
+    music_player_image.style.transform = 'none'
     currentIndex = Number(index)
-    isSondStart = true
     isPlay = true
+    if(!isSondStart){
+        audioVisualisation()
+        return isSondStart = true
+    }
     loadAudio({
         artist: songsList[currentIndex]?.artists[0]?.alias,
         title: songsList[currentIndex]?.title,
@@ -137,6 +147,7 @@ const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
     list_items.forEach(item => item.classList.remove('isPlaying'))
     list_items[currentIndex].classList.add('isPlaying')
     music_player_bg.src = background
+    // document.body
     music_player_image.src = coverart
     music_player_title.innerText = troncText(title, 30)
     music_player_artist.innerText = artist
@@ -147,7 +158,23 @@ const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
 
 const playSong = (isPlaying) => {
     palyPauseIcon.innerText = isPlaying ? 'pause' : 'play_arrow'
-    if (!isPlaying) return audio.pause()
+    const list_items = document.querySelectorAll('.list_item')
+
+    if (!isPlaying) {
+        list_items[currentIndex].querySelector('.playing_indicator')
+        .innerHTML = `<i class="material-icons">play_arrow</i>`
+        console.log(list_items[currentIndex].querySelector('.playing_indicator'))
+        return audio.pause()
+    }  
+    
+    list_items[currentIndex].querySelector('.playing_indicator')
+    .innerHTML = `<dotlottie-player src="https://lottie.host/6c3715b5-79c8-4d18-8d6d-77ea088f6133/iIo5HMcrKF.json" 
+    background="transparent" speed="2" style="width: 100%; height: 100%;" 
+    loop autoplay></dotlottie-player>
+    `
+    // console.log(list_items[currentIndex].querySelector('.playing_indicator'))
+
+    
     audio.play()
     audio.crossOrigin = "anonymous";
 }
@@ -176,29 +203,28 @@ const setListenStyle = () => {
 // event song
 audio.addEventListener('loadeddata', (event) => {
     const durationEl = document.querySelector('.music_player_timer .duration')
-    const duration = audio.duration
+    duration = audio.duration
     durationEl.innerText = formatTime(duration)
     setTimeout(() => { music_player_image.style.transition = '1s' }, 0)
 })
 
 audio.addEventListener('timeupdate', event => {
-    const music_player_progress = document.querySelector('.music_player_progress ')
-    const currentTimeEl = document.querySelector('.music_player_timer .currentTime')
+    //  music_player_progress = document.querySelector('.music_player_progress')
 
-    const duration = event.target.duration
-    const currentTime = event.target.currentTime
+    duration = event.target.duration
+    currentTime = event.target.currentTime
 
     const width = currentTime / duration * 100
     currentTimeEl.innerText = formatTime(currentTime)
     music_player_progress.style.width = width + '%'
-    music_player_image.style.transform = `rotate(${currentTime * 10}deg)`
-
-
+    rotateValue = currentTime * 10
+    music_player_image.style.transform = `rotate(${rotateValue}deg)`
 })
 
 audio.addEventListener('ended', () => {
     music_player_image.style.transition = 'none'
     music_player_image.style.transform = 'none'
+    
     setTimeout(() => { music_player_image.style.transition = '1s' }, 10)
 
     switch (listenSstyle) {
@@ -232,9 +258,24 @@ audio.addEventListener('ended', () => {
     }
 })
 
+volumeEl.addEventListener('input', () =>{
+    audio.volume = volumeEl.value / 10
+})
+
+music_player_progressBar.addEventListener('click', (e) =>{
+    if(!isSondStart) return
+    const rect = music_player_progressBar.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const width = rect.width;
+    const percentage = x / width;
+    const newTime = percentage * audio.duration;
+    rotateValue = rotateValue+newTime
+    music_player_image.style.transform = `rotate(${rotateValue}deg)`
+    audio.currentTime = newTime;
+
+})
+
 getSongFormApi()
-
-
 
 // Helper
 const troncText = (text, length) => {

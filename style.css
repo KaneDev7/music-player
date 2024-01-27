@@ -11,9 +11,10 @@ body {
     align-items: center;
     height: 100vh;
     font-family: poppins, sans-serif;
-    background: linear-gradient(180deg, #000000c4 42%, #564a05 100%); 
+    background: linear-gradient(180deg, #000000c4 42%, #564a05 100%);
 }
-body img{
+
+body img {
     width: 100%;
     object-fit: cover;
 }
@@ -26,14 +27,7 @@ body img{
     margin: 20px;
 }
 
-@media screen and (max-width: 380px) {
-  .music_player_warpper{
-    height: 90vh;
-  }
-  .music_player_slide_volume{
-    display: none;
-  }
-  }
+
 
 .music_player_bg {
     width: 100%;
@@ -44,21 +38,22 @@ body img{
     filter: blur(7px);
 }
 
-.music_player_bg img{
+.music_player_bg img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .music_player {
     width: 100%;
     height: 100%;
     border: solid 1px;
-    background: linear-gradient(180deg, #000000c4 42%, #000000ae 100%); 
+    background: linear-gradient(180deg, #000000c4 42%, #000000ae 100%);
     padding: 30px 20px;
     position: relative;
 }
 
-.music_player_loader{    
+.music_player_loader {
     width: 100%;
     height: 100%;
     display: flex;
@@ -70,7 +65,7 @@ body img{
     z-index: 4;
 }
 
-.music_player_loader.hiddden{
+.music_player_loader.hiddden {
     display: none;
 }
 
@@ -178,7 +173,7 @@ body img{
     background: white;
 } */
 
-.music_player_slide_volume{
+.music_player_slide_volume {
     width: 100%;
     height: 3px;
     display: flex;
@@ -186,10 +181,12 @@ body img{
     align-items: center;
     gap: 5px;
 }
-.music_player_slide_volume i{
+
+.music_player_slide_volume i {
     font-size: 15px;
 }
-.music_player_slide_volume input{
+
+.music_player_slide_volume input {
     width: 150px;
     height: 100%;
 }
@@ -222,12 +219,12 @@ body img{
 
 /* MUSIC LIST */
 
-.music_player_list{
+.music_player_list {
     width: 100%;
     position: absolute;
     box-shadow: 0 0 100px #867c25f9;
     background: rgb(26, 26, 26);
-    background: linear-gradient(180deg, #0f0f0ff1 50%,  #332f1cf9  100%); 
+    background: linear-gradient(180deg, #0f0f0ff1 50%, #332f1cf9 100%);
     inset: 0;
     z-index: 4;
     padding: 20px 10px;
@@ -235,64 +232,66 @@ body img{
     transform: translateY(110%);
 }
 
-.music_player_list.showList{
+.music_player_list.showList {
     transform: translateY(0);
 }
 
-.music_player_list
-.music_player_header span:last-child{
+.music_player_list .music_player_header span:last-child {
     opacity: 0;
     pointer-events: none;
 }
-.music_player_list_items{
+
+.music_player_list_items {
     height: 90%;
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     overflow-y: auto;
 }
-.music_player_list_items::-webkit-scrollbar{
+
+.music_player_list_items::-webkit-scrollbar {
     width: 3px;
 }
 
 
-.music_player_list_items::-webkit-scrollbar-thumb{
+.music_player_list_items::-webkit-scrollbar-thumb {
     background: #ebeaea57;
 
 }
 
-.list_item{
+.list_item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 10px ;
+    padding: 15px 10px;
     cursor: pointer;
     border-bottom: 1px #dd62621b solid;
 }
 
 
-.list_item_sound{
+.list_item_sound {
     display: flex;
     gap: 20px;
 }
 
-.list_item_sound img{
+.list_item_sound img {
     width: 50px;
     width: 50px;
     object-fit: cover;
     border-radius: 10px;
 }
 
-.list_item_text h4{
+.list_item_text h4 {
     color: #ffffffbc;
     font-size: 15px;
 }
-.list_item_text p{
+
+.list_item_text p {
     font-size: 13px;
     color: #ffffff6f;
 }
 
-.playing_indicator{
+.playing_indicator {
     width: 30px;
     height: 50px;
     display: flex;
@@ -301,21 +300,40 @@ body img{
     /* background: #850303; */
 }
 
-.playing_indicator_bar{
+.playing_indicator_bar {
     width: 100%;
     height: 100%;
     background: #ffffffbd;
     border-radius: 10px;
 }
-.isPlaying .time{
-    display: none!important;
+
+.isPlaying .time {
+    display: none !important;
 }
 
-.list_item:not(.isPlaying) .playing_indicator{
+.list_item:not(.isPlaying) .playing_indicator {
     display: none;
 }
 
-.list_item_time{
+.list_item_time {
     color: white;
     font-size: 13px;
+}
+
+
+@media screen and (max-width: 380px) {
+    .music_player_warpper {
+        height: 99vh;
+    }
+
+    .music_player_slide_volume {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 430px) {
+
+    .music_player_slide_volume {
+        display: none;
+    }
 }

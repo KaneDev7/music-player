@@ -11,7 +11,7 @@ body {
     align-items: center;
     height: 100vh;
     font-family: poppins, sans-serif;
-    background: linear-gradient(180deg, #000000c4 42%, #9e3131 100%); 
+    background: linear-gradient(180deg, #000000c4 42%, #564a05 100%); 
 }
 body img{
     width: 100%;
@@ -23,6 +23,7 @@ body img{
     width: 400px;
     overflow: hidden;
     border-radius: 10px;
+    margin: 20px;
 }
 
 .music_player_bg {
@@ -31,7 +32,7 @@ body img{
     background-size: cover;
     position: absolute;
     inset: 0;
-    filter: blur(4px);
+    filter: blur(7px);
 }
 
 .music_player_bg img{
@@ -43,7 +44,7 @@ body img{
     width: 100%;
     height: 100%;
     border: solid 1px;
-    background: linear-gradient(180deg, #000000c4 42%, #850303 100%); 
+    background: linear-gradient(180deg, #000000c4 42%, #000000ae 100%); 
     padding: 30px 20px;
     position: relative;
 }
@@ -112,8 +113,8 @@ body img{
     left: 50%;
     transform: translate(-50%, -50%);
     display: inline-block;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-top: 20px solid #f0f0f1;
     border-right: 15px solid transparent;
     border-left: 15px solid transparent;
@@ -151,7 +152,7 @@ body img{
     position: absolute;
     cursor: pointer;
     inset: 0;
-    background: white;
+    background: #fff2c6;
     border-radius: 10px;
     pointer-events: none;
 }

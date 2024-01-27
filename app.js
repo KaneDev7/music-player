@@ -13,8 +13,8 @@ const music_player_progress = document.querySelector('.music_player_progress')
 const currentTimeEl = document.querySelector('.music_player_timer .currentTime')
 const volumeEl = document.querySelector('.volume')
 
+
 let isShowList = false
-let songsList = []
 let isSondStart = false
 let isDataLoad = false
 let isPlay = false
@@ -23,14 +23,15 @@ let listenSstyle = 'repeat'
 let duration = 0
 let currentTime = 0
 let rotateValue = 0
+let volume = 10
 
-const colors = ['#1D2B53', '#7E2553', '#FF004D', '#FAEF5D']
+const colors = ['#FFF7D4', '#FFD95A', '#C07F00', '#4C3D3D']
 
 const url = 'https://shazam.p.rapidapi.com/charts/track?pageSize=8'
 const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '85dfc8a7ffmsh8393631339b84c5p1d6c80jsn3cbf1a94580a',
+        'X-RapidAPI-Key': '166dd02a40mshb4df9831f2ca119p1c2a2ejsn45d175ee81e9',
         'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
     }
 };
@@ -42,36 +43,20 @@ const toogleShowList = () => {
 }
 
 
-const getSongFormApi = async () => {
-    try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        songsList = [...result?.tracks]
-        insertSongList()
-
-    } catch (error) {
-        console.log(error);
-        // alert('Check your connection')
-    }
-}
-
-
-const insertSongList = () => {
+const insertSongListFromLocal = () => {
 
     const liList = songsList.map((item, index) => {
-        const artist = item?.artists?.map((element, i) => element?.alias).join('')
-        const uri = item?.hub?.actions?.map((element, i) => element?.uri)[1]
 
-        return item?.images && `<li class="list_item " 
+        return `<li class="list_item " 
         onclick="playSongOnClick('${index}') ">
           <div class="list_item_sound">
-            <img src="${item?.images?.coverart || item?.images?.coverarthq}" alt="">
+            <img src="/images/lflf.jpeg" alt="">
             <div class="list_item_text">
                 <h4>${troncText(item?.title, 25)} </h4>
-               <p>${artist}</p>
+               <p>${item.artist}</p>
             </div>
         </div>
-        <audio src="${uri}"></audio>
+        <audio src="${item.uri}"></audio>
         <div class="list_item_time">
             <span class="time"> 0:00 </span>
             <div class="playing_indicator">
@@ -83,12 +68,11 @@ const insertSongList = () => {
     </li>
         `
     })
+
     music_player_list_items.innerHTML = liList.join('')
     document.querySelector('.music_player_loader').classList.add('hiddden')
     insertDurationOnElelement()
-
 }
-
 
 const insertDurationOnElelement = () => {
     const list_items = document.querySelectorAll('.list_item')
@@ -112,11 +96,11 @@ const playSongOnClick = (index) => {
         return isSondStart = true
     }
     loadAudio({
-        artist: songsList[currentIndex]?.artists[0]?.alias,
+        artist: songsList[currentIndex]?.artist,
         title: songsList[currentIndex]?.title,
-        uri: songsList[currentIndex]?.hub?.actions[1]?.uri,
-        coverart: songsList[currentIndex]?.images?.coverart,
-        background: songsList[currentIndex]?.images?.background,
+        uri: songsList[currentIndex]?.uri,
+        coverart: `/images/lflf.jpeg`,
+        background: `/images/lflf.jpeg`,
         isPlaying: true
     })
 }
@@ -127,11 +111,11 @@ const nextPrevSong = () => {
     isSondStart = true
     isPlay = true
     loadAudio({
-        artist: songsList[currentIndex]?.artists[0]?.alias,
+        artist: songsList[currentIndex]?.artist,
         title: songsList[currentIndex]?.title,
-        uri: songsList[currentIndex]?.hub?.actions[1]?.uri,
-        coverart: songsList[currentIndex]?.images?.coverart,
-        background: songsList[currentIndex]?.images?.background,
+        uri: songsList[currentIndex]?.uri,
+        coverart: `/images/lflf.jpeg`,
+        background: `/images/lflf.jpeg`,
         isPlaying: true
     })
 }
@@ -147,7 +131,6 @@ const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
     list_items.forEach(item => item.classList.remove('isPlaying'))
     list_items[currentIndex].classList.add('isPlaying')
     music_player_bg.src = background
-    // document.body
     music_player_image.src = coverart
     music_player_title.innerText = troncText(title, 30)
     music_player_artist.innerText = artist
@@ -171,10 +154,7 @@ const playSong = (isPlaying) => {
     .innerHTML = `<dotlottie-player src="https://lottie.host/6c3715b5-79c8-4d18-8d6d-77ea088f6133/iIo5HMcrKF.json" 
     background="transparent" speed="2" style="width: 100%; height: 100%;" 
     loop autoplay></dotlottie-player>
-    `
-    // console.log(list_items[currentIndex].querySelector('.playing_indicator'))
-
-    
+    `    
     audio.play()
     audio.crossOrigin = "anonymous";
 }
@@ -217,8 +197,8 @@ audio.addEventListener('timeupdate', event => {
     const width = currentTime / duration * 100
     currentTimeEl.innerText = formatTime(currentTime)
     music_player_progress.style.width = width + '%'
-    rotateValue = currentTime * 10
-    music_player_image.style.transform = `rotate(${rotateValue}deg)`
+    // rotateValue = currentTime * 10
+    // music_player_image.style.transform = `rotate(${rotateValue}deg)`
 })
 
 audio.addEventListener('ended', () => {
@@ -245,11 +225,11 @@ audio.addEventListener('ended', () => {
             console.log('currentIndex', currentIndex)
 
             loadAudio({
-                artist: songsList[currentIndex]?.artists[0]?.alias,
+                artist: songsList[currentIndex]?.artist,
                 title: songsList[currentIndex]?.title,
-                uri: songsList[currentIndex]?.hub?.actions[1]?.uri,
-                coverart: songsList[currentIndex]?.images?.coverart,
-                background: songsList[currentIndex]?.images?.background,
+                uri: songsList[currentIndex]?.uri,
+                coverart: `/images/lflf.jpeg`,
+                background: `/images/lflf.jpeg`,
                 isPlaying: true
             })
             break
@@ -259,7 +239,8 @@ audio.addEventListener('ended', () => {
 })
 
 volumeEl.addEventListener('input', () =>{
-    audio.volume = volumeEl.value / 10
+    volume = volumeEl.value / 10
+    audio.volume = volume
 })
 
 music_player_progressBar.addEventListener('click', (e) =>{
@@ -270,12 +251,10 @@ music_player_progressBar.addEventListener('click', (e) =>{
     const percentage = x / width;
     const newTime = percentage * audio.duration;
     rotateValue = rotateValue+newTime
-    music_player_image.style.transform = `rotate(${rotateValue}deg)`
     audio.currentTime = newTime;
-
+    // music_player_image.style.transform = `rotate(${rotateValue}deg)`
 })
 
-getSongFormApi()
 
 // Helper
 const troncText = (text, length) => {
@@ -296,6 +275,33 @@ function formatTime(currentTime) {
 show_list_icon.addEventListener('click', toogleShowList)
 close_list_icon.addEventListener('click', toogleShowList)
 listen_style_icon.addEventListener('click', setListenStyle)
+document.addEventListener('keydown', (event) =>{
+    console.log(event.key)
+     if(event.key === 'ArrowRight'){
+        currentIndex = currentIndex < songsList.length - 1 ? currentIndex + 1 : 0
+        nextPrevSong()
+     }else if(event.key === 'ArrowLeft'){
+        currentIndex = currentIndex > 0 ? currentIndex - 1 : songsList.length - 1
+        nextPrevSong()
+     }else if(event.key === ' '){
+        isPlay = !isPlay
+        if (!isSondStart) {
+            loadAudio({
+                artist: songsList[currentIndex]?.artist,
+                title: songsList[currentIndex]?.title,
+                uri: songsList[currentIndex]?.uri,
+                coverart: `/images/lflf.jpeg`,
+                background: `/images/lflf.jpeg`,
+                isPlaying: true
+            })
+            audioVisualisation()
+            return isSondStart = true
+        } else {
+            playSong(isPlay)
+        }
+      }
+})
+
 nextBtn.addEventListener('click', () => {
     currentIndex = currentIndex < songsList.length - 1 ? currentIndex + 1 : 0
     nextPrevSong()
@@ -310,11 +316,11 @@ palyPauseIcon.addEventListener('click', () => {
 
     if (!isSondStart) {
         loadAudio({
-            artist: songsList[currentIndex]?.artists[0]?.alias,
+            artist: songsList[currentIndex]?.artist,
             title: songsList[currentIndex]?.title,
-            uri: songsList[currentIndex]?.hub?.actions[1]?.uri,
-            coverart: songsList[currentIndex]?.images?.coverart,
-            background: songsList[currentIndex]?.images?.background,
+            uri: songsList[currentIndex]?.uri,
+            coverart: `/images/lflf.jpeg`,
+            background: `/images/lflf.jpeg`,
             isPlaying: true
         })
         audioVisualisation()
@@ -324,6 +330,8 @@ palyPauseIcon.addEventListener('click', () => {
     }
 
 })
+
+insertSongListFromLocal()
 
 
 // AUDIO VISUALISTATION

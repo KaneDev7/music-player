@@ -20,11 +20,17 @@ body img{
 
 .music_player_warpper {
     position: relative;
-    width: 400px;
+    width: 350px;
     overflow: hidden;
     border-radius: 10px;
     margin: 20px;
 }
+
+@media screen and (max-width: 380px) {
+  .music_player_warpper{
+    height: 90vh;
+  }
+  }
 
 .music_player_bg {
     width: 100%;
@@ -85,7 +91,7 @@ body img{
 }
 
 .music_player_image {
-    width: 300px;
+    width: 90%;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     margin: 30px auto;
@@ -216,9 +222,9 @@ body img{
 .music_player_list{
     width: 100%;
     position: absolute;
-    box-shadow: 0 0 100px #dc5757f9;
+    box-shadow: 0 0 100px #867c25f9;
     background: rgb(26, 26, 26);
-    background: linear-gradient(180deg, #0f0f0ff1 50%,  #850303f9  100%); 
+    background: linear-gradient(180deg, #0f0f0ff1 50%,  #332f1cf9  100%); 
     inset: 0;
     z-index: 4;
     padding: 20px 10px;

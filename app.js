@@ -91,7 +91,7 @@ const playSongOnClick = (index) => {
     music_player_image.style.transform = 'none'
     currentIndex = Number(index)
     isPlay = true
-    if(!isSondStart){
+    if (!isSondStart) {
         audioVisualisation()
         return isSondStart = true
     }
@@ -145,16 +145,16 @@ const playSong = (isPlaying) => {
 
     if (!isPlaying) {
         list_items[currentIndex].querySelector('.playing_indicator')
-        .innerHTML = `<i class="material-icons">play_arrow</i>`
+            .innerHTML = `<i class="material-icons">play_arrow</i>`
         console.log(list_items[currentIndex].querySelector('.playing_indicator'))
         return audio.pause()
-    }  
-    
+    }
+
     list_items[currentIndex].querySelector('.playing_indicator')
-    .innerHTML = `<dotlottie-player src="https://lottie.host/6c3715b5-79c8-4d18-8d6d-77ea088f6133/iIo5HMcrKF.json" 
+        .innerHTML = `<dotlottie-player src="https://lottie.host/6c3715b5-79c8-4d18-8d6d-77ea088f6133/iIo5HMcrKF.json" 
     background="transparent" speed="2" style="width: 100%; height: 100%;" 
     loop autoplay></dotlottie-player>
-    `    
+    `
     audio.play()
     audio.crossOrigin = "anonymous";
 }
@@ -204,7 +204,7 @@ audio.addEventListener('timeupdate', event => {
 audio.addEventListener('ended', () => {
     music_player_image.style.transition = 'none'
     music_player_image.style.transform = 'none'
-    
+
     setTimeout(() => { music_player_image.style.transition = '1s' }, 10)
 
     switch (listenSstyle) {
@@ -238,19 +238,19 @@ audio.addEventListener('ended', () => {
     }
 })
 
-volumeEl.addEventListener('input', () =>{
+volumeEl.addEventListener('input', () => {
     volume = volumeEl.value / 10
     audio.volume = volume
 })
 
-music_player_progressBar.addEventListener('click', (e) =>{
-    if(!isSondStart) return
+music_player_progressBar.addEventListener('click', (e) => {
+    if (!isSondStart) return
     const rect = music_player_progressBar.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const width = rect.width;
     const percentage = x / width;
     const newTime = percentage * audio.duration;
-    rotateValue = rotateValue+newTime
+    rotateValue = rotateValue + newTime
     audio.currentTime = newTime;
     // music_player_image.style.transform = `rotate(${rotateValue}deg)`
 })
@@ -275,15 +275,15 @@ function formatTime(currentTime) {
 show_list_icon.addEventListener('click', toogleShowList)
 close_list_icon.addEventListener('click', toogleShowList)
 listen_style_icon.addEventListener('click', setListenStyle)
-document.addEventListener('keydown', (event) =>{
+document.addEventListener('keydown', (event) => {
     console.log(event.key)
-     if(event.key === 'ArrowRight'){
+    if (event.key === 'ArrowRight') {
         currentIndex = currentIndex < songsList.length - 1 ? currentIndex + 1 : 0
         nextPrevSong()
-     }else if(event.key === 'ArrowLeft'){
+    } else if (event.key === 'ArrowLeft') {
         currentIndex = currentIndex > 0 ? currentIndex - 1 : songsList.length - 1
         nextPrevSong()
-     }else if(event.key === ' '){
+    } else if (event.key === ' ') {
         isPlay = !isPlay
         if (!isSondStart) {
             loadAudio({
@@ -299,7 +299,7 @@ document.addEventListener('keydown', (event) =>{
         } else {
             playSong(isPlay)
         }
-      }
+    }
 })
 
 nextBtn.addEventListener('click', () => {
@@ -371,7 +371,15 @@ const audioVisualisation = () => {
         for (let i = 0; i < bufferLength; i++) {
             let item = dataArray[i];
             item = item > 150 ? item / 1.5 : item * 1.5;
-            elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 150)}px)`;
+            if (window.innerWidth <= 380) {
+                elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 130)}px)`;
+            }else if (window.innerWidth <= 360) {
+                elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 115)}px)`;
+            }else{
+            elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 135)}px)`;
+
+            }
+
         }
         requestAnimationFrame(update)
 

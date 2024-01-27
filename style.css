@@ -28,7 +28,10 @@ body img{
 
 @media screen and (max-width: 380px) {
   .music_player_warpper{
-    height: 99vh;
+    height: 90vh;
+  }
+  .music_player_slide_volume{
+    display: none;
   }
   }
 

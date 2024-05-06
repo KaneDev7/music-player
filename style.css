@@ -26,7 +26,7 @@ body img {
 
 .music_player_warpper {
     position: relative;
-    width: 350px;
+    width: 380px;
     overflow: hidden;
     border-radius: 10px;
     margin: 20px;
@@ -65,7 +65,7 @@ body img {
     align-items: center;
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, #000000c4 42%, #850303 100%);
+    background: linear-gradient(180deg, #000000ed 42%, #564102 100%);
     z-index: 4;
 }
 
@@ -93,7 +93,7 @@ body img {
 }
 
 .music_player_image {
-    width: 90%;
+    width: 275px;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     margin: 30px auto;
@@ -326,18 +326,18 @@ body img {
 
 
 @media screen and (max-width: 380px) {
-    .music_player_warpper {
+    /* .music_player_warpper {
         height: 99vh;
-    }
+    } */
 
-    .music_player_slide_volume {
+    /* .music_player_slide_volume {
         display: none;
-    }
+    } */
 }
 
 @media screen and (max-width: 430px) {
-
+/* 
     .music_player_slide_volume {
         display: none;
-    }
+    } */
 }

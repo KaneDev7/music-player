@@ -67,7 +67,7 @@ const insertSongListFromLocal = () => {
                         <span class="time"> 0:00 </span>
                         <div class="playing_indicator">
                             <dotlottie-player src="https://lottie.host/6c3715b5-79c8-4d18-8d6d-77ea088f6133/iIo5HMcrKF.json" 
-                            background="transparent" speed="2" style="width: 100%; height: 100%;" 
+                            background="#FEBF01" speed="2" style="width: 100%; height: 100%;" 
                             loop autoplay></dotlottie-player>
                         </div>
                     </div>
@@ -402,8 +402,8 @@ const audioVisualisation = () => {
                 elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 115)}px)`;
             } else {
                 elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 135)}px)`;
-
             }
+
 
         }
         requestAnimationFrame(update)

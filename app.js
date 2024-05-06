@@ -28,6 +28,7 @@ let volume = 10
 const colors = ['#FFF7D4', '#FFD95A', '#C07F00', '#4C3D3D']
 
 const url = 'https://shazam.p.rapidapi.com/charts/track?pageSize=8'
+
 const options = {
     method: 'GET',
     headers: {
@@ -47,25 +48,24 @@ const insertSongListFromLocal = () => {
 
     const liList = songsList.map((item, index) => {
 
-        return `<li class="list_item " 
-        onclick="playSongOnClick('${index}') ">
-          <div class="list_item_sound">
-            <img src="/images/lflf.jpeg" alt="">
-            <div class="list_item_text">
-                <h4>${troncText(item?.title, 25)} </h4>
-               <p>${item.artist}</p>
-            </div>
-        </div>
-        <audio src="${item.uri}"></audio>
-        <div class="list_item_time">
-            <span class="time"> 0:00 </span>
-            <div class="playing_indicator">
-            <dotlottie-player src="https://lottie.host/6c3715b5-79c8-4d18-8d6d-77ea088f6133/iIo5HMcrKF.json" 
-            background="transparent" speed="2" style="width: 100%; height: 100%;" 
-            loop autoplay></dotlottie-player>
-            </div>
-        </div>
-    </li>
+        return `<li class="list_item"  onclick="playSongOnClick('${index}') ">
+                    <div class="list_item_sound">
+                        <img src="/images/lflf.jpeg" alt="">
+                        <div class="list_item_text">
+                            <h4>${troncText(item?.title, 25)} </h4>
+                            <p>${item.artist}</p>
+                        </div>
+                    </div>
+                   <audio src="${item.uri}"></audio>
+                    <div class="list_item_time">
+                        <span class="time"> 0:00 </span>
+                        <div class="playing_indicator">
+                            <dotlottie-player src="https://lottie.host/6c3715b5-79c8-4d18-8d6d-77ea088f6133/iIo5HMcrKF.json" 
+                            background="transparent" speed="2" style="width: 100%; height: 100%;" 
+                            loop autoplay></dotlottie-player>
+                        </div>
+                    </div>
+               </li>
         `
     })
 
@@ -91,10 +91,12 @@ const playSongOnClick = (index) => {
     music_player_image.style.transform = 'none'
     currentIndex = Number(index)
     isPlay = true
+
     if (!isSondStart) {
         audioVisualisation()
         return isSondStart = true
     }
+
     loadAudio({
         artist: songsList[currentIndex]?.artist,
         title: songsList[currentIndex]?.title,
@@ -110,6 +112,7 @@ const nextPrevSong = () => {
     music_player_image.style.transform = 'none'
     isSondStart = true
     isPlay = true
+
     loadAudio({
         artist: songsList[currentIndex]?.artist,
         title: songsList[currentIndex]?.title,
@@ -120,7 +123,9 @@ const nextPrevSong = () => {
     })
 }
 
+
 const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
+
     const music_player_image = document.querySelector('.music_player_image img')
     const music_player_title = document.querySelector('.music_player_text h3')
     const music_player_artist = document.querySelector('.music_player_text p')
@@ -180,6 +185,7 @@ const setListenStyle = () => {
     }
 }
 
+
 // event song
 audio.addEventListener('loadeddata', (event) => {
     const durationEl = document.querySelector('.music_player_timer .duration')
@@ -187,6 +193,7 @@ audio.addEventListener('loadeddata', (event) => {
     durationEl.innerText = formatTime(duration)
     setTimeout(() => { music_player_image.style.transition = '1s' }, 0)
 })
+
 
 audio.addEventListener('timeupdate', event => {
     //  music_player_progress = document.querySelector('.music_player_progress')
@@ -200,6 +207,7 @@ audio.addEventListener('timeupdate', event => {
     // rotateValue = currentTime * 10
     // music_player_image.style.transform = `rotate(${rotateValue}deg)`
 })
+
 
 audio.addEventListener('ended', () => {
     music_player_image.style.transition = 'none'
@@ -216,14 +224,11 @@ audio.addEventListener('ended', () => {
             audio.play()
             break;
         case 'shuffle':
-            console.log('currentIndex', currentIndex)
             let newIndex
             do {
                 newIndex = Math.floor(Math.random() * songsList.length)
             } while (newIndex === currentIndex);
             currentIndex = newIndex
-            console.log('currentIndex', currentIndex)
-
             loadAudio({
                 artist: songsList[currentIndex]?.artist,
                 title: songsList[currentIndex]?.title,
@@ -242,6 +247,7 @@ volumeEl.addEventListener('input', () => {
     volume = volumeEl.value / 10
     audio.volume = volume
 })
+
 
 music_player_progressBar.addEventListener('click', (e) => {
     if (!isSondStart) return
@@ -275,6 +281,8 @@ function formatTime(currentTime) {
 show_list_icon.addEventListener('click', toogleShowList)
 close_list_icon.addEventListener('click', toogleShowList)
 listen_style_icon.addEventListener('click', setListenStyle)
+
+
 document.addEventListener('keydown', (event) => {
     console.log(event.key)
     if (event.key === 'ArrowRight') {

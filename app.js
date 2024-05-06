@@ -7,6 +7,7 @@ const palyPauseIcon = document.querySelector('.palyPauseIcon i')
 const audio = document.querySelector('audio')
 const nextBtn = document.querySelector('.nextBtn')
 const prevbtn = document.querySelector('.prevBtn')
+const music_player_loader = document.querySelector('.music_player_loader')
 const listen_style_icon = document.querySelector('.listen_style_icon i')
 const music_player_progressBar = document.querySelector('.music_player_progressBar')
 const music_player_progress = document.querySelector('.music_player_progress')
@@ -36,6 +37,11 @@ const options = {
         'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
     }
 };
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    music_player_loader.classList.add('hiddden')
+})
 
 const toogleShowList = () => {
     isShowList = !isShowList
@@ -70,7 +76,6 @@ const insertSongListFromLocal = () => {
     })
 
     music_player_list_items.innerHTML = liList.join('')
-    document.querySelector('.music_player_loader').classList.add('hiddden')
     insertDurationOnElelement()
 }
 
@@ -140,6 +145,15 @@ const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
     music_player_title.innerText = troncText(title, 30)
     music_player_artist.innerText = artist
     audio.src = uri
+
+    music_player_loader.classList.remove('hiddden')
+    music_player_loader.style.opacity = '0'
+
+    setTimeout(() => { music_player_loader.style.opacity = '1'}, 1500)
+    
+    audio.addEventListener('loadeddata', () => {
+        music_player_loader.classList.add('hiddden')
+    })
     playSong(isPlaying)
 
 }
@@ -371,7 +385,10 @@ const audioVisualisation = () => {
     }
 
     document.querySelectorAll('.element')
-        .forEach(item => item.style.borderTop = `10px solid ${colors[Math.floor(Math.random() * colors.length)]}`)
+        .forEach(item => {
+            const color = colors[Math.floor(Math.random() * colors.length)]
+            item.style.borderTop = `10px solid ${color}`
+        })
 
     const update = () => {
         analyser.getByteFrequencyData(dataArray)
@@ -381,10 +398,10 @@ const audioVisualisation = () => {
             item = item > 150 ? item / 1.5 : item * 1.5;
             if (window.innerWidth <= 380) {
                 elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 130)}px)`;
-            }else if (window.innerWidth <= 360) {
+            } else if (window.innerWidth <= 360) {
                 elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 115)}px)`;
-            }else{
-            elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 135)}px)`;
+            } else {
+                elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 135)}px)`;
 
             }
 

@@ -1,3 +1,5 @@
+
+
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +13,10 @@ body {
     align-items: center;
     height: 100vh;
     font-family: poppins, sans-serif;
-    background: linear-gradient(180deg, #000000c4 42%, #564a05 100%);
+    background: url('/images/bg.png');
+    background-size: cover;
+    background-repeat: no-repeat; 
+    
 }
 
 body img {
@@ -47,8 +52,7 @@ body img {
 .music_player {
     width: 100%;
     height: 100%;
-    border: solid 1px;
-    background: linear-gradient(180deg, #000000c4 42%, #000000ae 100%);
+    background: linear-gradient(180deg, #000000df 42%, #000000c8 100%);
     padding: 30px 20px;
     position: relative;
 }
@@ -105,7 +109,7 @@ body img {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    box-shadow: 0px 0px 30px #ffffff30;
+    box-shadow: 0px 0px 50px #febf0152;
     border-radius: inherit;
     z-index: 2;
 
@@ -144,7 +148,7 @@ body img {
 
 .music_player_progressBar {
     height: 4px;
-    background: #ffffff67;
+    background: #616060f7;
     position: relative;
     border-radius: 10px;
     cursor: pointer;
@@ -156,7 +160,7 @@ body img {
     position: absolute;
     cursor: pointer;
     inset: 0;
-    background: #fff2c6;
+    background: #ffffff;
     border-radius: 10px;
     pointer-events: none;
 }
@@ -222,8 +226,8 @@ body img {
 .music_player_list {
     width: 100%;
     position: absolute;
-    box-shadow: 0 0 100px #867c25f9;
-    background: rgb(26, 26, 26);
+    box-shadow: 0 0 100px #c8c8c7f9;
+    background: rgba(26, 26, 26, 0.77);
     background: linear-gradient(180deg, #0f0f0ff1 50%, #332f1cf9 100%);
     inset: 0;
     z-index: 4;

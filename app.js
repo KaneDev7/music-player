@@ -96,13 +96,10 @@ const playSongOnClick = (index) => {
     music_player_image.style.transform = 'none'
     currentIndex = Number(index)
     isPlay = true
-    isSondStart = true
-
-
 
     if (!isSondStart) {
         audioVisualisation()
-        return isSondStart = true
+        isSondStart = true
     }
 
     loadAudio({
@@ -116,7 +113,7 @@ const playSongOnClick = (index) => {
 }
 
 const nextPrevSong = () => {
-    
+
     music_player_image.style.transition = 'none'
     music_player_image.style.transform = 'none'
     isSondStart = true
@@ -154,8 +151,8 @@ const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
     music_player_loader.classList.remove('hiddden')
     music_player_loader.style.opacity = '0'
 
-    setTimeout(() => { music_player_loader.style.opacity = '1'}, 1500)
-    
+    setTimeout(() => { music_player_loader.style.opacity = '1' }, 1500)
+
     audio.addEventListener('loadeddata', () => {
         music_player_loader.classList.add('hiddden')
     })

@@ -170,7 +170,7 @@ const playSong = (isPlaying) => {
 
     if (!isPlaying) {
         list_items[currentIndex].querySelector('.playing_indicator')
-            .innerHTML = `<i class="material-icons">play_arrow</i>`
+            .innerHTML = `<i class="material-icons" style="color: #f5cb4e;" >play_arrow</i>`
         return audio.pause()
     }
 

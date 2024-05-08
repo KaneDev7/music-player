@@ -1,6 +1,7 @@
 const music_player_list = document.querySelector('.music_player_list')
 const music_player_list_items = document.querySelector('.music_player_list_items')
 const music_player_image = document.querySelector('.music_player_image')
+const music_player_av = document.querySelector('.music_player_av')
 const close_list_icon = document.querySelector('.close_list')
 const show_list_icon = document.querySelector('.list_icon i')
 const palyPauseIcon = document.querySelector('.palyPauseIcon i')
@@ -26,7 +27,8 @@ let currentTime = 0
 let rotateValue = 0
 let volume = 10
 
-const colors = ['#FFF7D4', '#FFD95A', '#C07F00', '#4C3D3D']
+const colors = ['#FFF7D4', '#FFD95A', '#C07F00','#fcbd00','#fff']
+// const colors = ['#fff', '#fcbd00']
 
 const url = 'https://shazam.p.rapidapi.com/charts/track?pageSize=8'
 
@@ -54,11 +56,11 @@ const insertSongListFromLocal = () => {
 
     const liList = songsList.map((item, index) => {
 
-        return `<li class="list_item"  onclick="playSongOnClick('${index}') ">
+        return `<li class="list_item"  onclick="playSongOnClick('${index}')">
                     <div class="list_item_sound">
                         <img src="/images/lflf.jpeg" alt="">
                         <div class="list_item_text">
-                            <h4>${troncText(item?.title, 25)} </h4>
+                            <h4>${troncText(item?.title, 15)} </h4>
                             <p>${item.artist}</p>
                         </div>
                     </div>
@@ -66,7 +68,7 @@ const insertSongListFromLocal = () => {
                     <div class="list_item_time">
                         <span class="time"> 0:00 </span>
                         <div class="playing_indicator">
-                            <dotlottie-player src="https://lottie.host/6c3715b5-79c8-4d18-8d6d-77ea088f6133/iIo5HMcrKF.json" 
+                            <dotlottie-player src="./indicador.json" 
                             background="transparent" speed="2" style="width: 100%; height: 100%;" 
                             loop autoplay></dotlottie-player>
                         </div>
@@ -110,6 +112,8 @@ const playSongOnClick = (index) => {
         background: `/images/lflf.jpeg`,
         isPlaying: true
     })
+
+
 }
 
 const nextPrevSong = () => {
@@ -144,7 +148,7 @@ const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
     list_items[currentIndex].classList.add('isPlaying')
     music_player_bg.src = background
     music_player_image.src = coverart
-    music_player_title.innerText = troncText(title, 30)
+    music_player_title.innerText = troncText(title, 25)
     music_player_artist.innerText = artist
     audio.src = uri
 
@@ -171,7 +175,7 @@ const playSong = (isPlaying) => {
     }
 
     list_items[currentIndex].querySelector('.playing_indicator')
-        .innerHTML = `<dotlottie-player src="https://lottie.host/6c3715b5-79c8-4d18-8d6d-77ea088f6133/iIo5HMcrKF.json" 
+        .innerHTML = `<dotlottie-player src="./indicador.json" 
     background="transparent" speed="2" style="width: 100%; height: 100%;" 
     loop autoplay></dotlottie-player>
     `
@@ -333,25 +337,31 @@ prevbtn.addEventListener('click', () => {
     nextPrevSong()
 })
 
-palyPauseIcon.addEventListener('click', () => {
-    isPlay = !isPlay
-
-    if (!isSondStart) {
-        loadAudio({
-            artist: songsList[currentIndex]?.artist,
-            title: songsList[currentIndex]?.title,
-            uri: songsList[currentIndex]?.uri,
-            coverart: `/images/lflf.jpeg`,
-            background: `/images/lflf.jpeg`,
-            isPlaying: true
-        })
-        audioVisualisation()
-        return isSondStart = true
-    } else {
-        playSong(isPlay)
+function playPauseSong(event){
+    // event.stopPropagation()
+    console.log(this)
+        isPlay = !isPlay
+    
+        if (!isSondStart) {
+            loadAudio({
+                artist: songsList[currentIndex]?.artist,
+                title: songsList[currentIndex]?.title,
+                uri: songsList[currentIndex]?.uri,
+                coverart: `/images/lflf.jpeg`,
+                background: `/images/lflf.jpeg`,
+                isPlaying: true
+            })
+            audioVisualisation()
+            return isSondStart = true
+        } else {
+            playSong(isPlay)
+        }
+    
     }
 
-})
+
+palyPauseIcon.addEventListener('click', playPauseSong)
+
 
 insertSongListFromLocal()
 
@@ -372,7 +382,7 @@ const audioVisualisation = () => {
     const source = audioContext.createMediaElementSource(audio)
     source.connect(analyser)
     source.connect(audioContext.destination)
-    analyser.fftSize = 64
+    analyser.fftSize = 128
     const bufferLength = analyser.frequencyBinCount
     let dataArray = new Uint8Array(bufferLength)
 
@@ -381,7 +391,7 @@ const audioVisualisation = () => {
         const element = document.createElement('span')
         element.classList.add('element')
         elements.push(element)
-        music_player_image.appendChild(element)
+        music_player_av.appendChild(element)
     }
 
     document.querySelectorAll('.element')

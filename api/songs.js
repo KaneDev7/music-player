@@ -60,7 +60,7 @@ const songsList = [
         uri : '/audios/Dee_ci_yaw.mp3' 
     },
     {
-        artist: 'Dip doundou guiss feat bilou_xve_bm',
+        artist: 'Dip doundou guiss',
         title : 'Homie',
         image : '',
         uri : '/audios/Homie.mp3' 

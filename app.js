@@ -67,7 +67,7 @@ const insertSongListFromLocal = () => {
                         <span class="time"> 0:00 </span>
                         <div class="playing_indicator">
                             <dotlottie-player src="https://lottie.host/6c3715b5-79c8-4d18-8d6d-77ea088f6133/iIo5HMcrKF.json" 
-                            background="#FEBF01" speed="2" style="width: 100%; height: 100%;" 
+                            background="transparent" speed="2" style="width: 100%; height: 100%;" 
                             loop autoplay></dotlottie-player>
                         </div>
                     </div>
@@ -96,6 +96,9 @@ const playSongOnClick = (index) => {
     music_player_image.style.transform = 'none'
     currentIndex = Number(index)
     isPlay = true
+    isSondStart = true
+
+
 
     if (!isSondStart) {
         audioVisualisation()
@@ -113,6 +116,7 @@ const playSongOnClick = (index) => {
 }
 
 const nextPrevSong = () => {
+    
     music_player_image.style.transition = 'none'
     music_player_image.style.transform = 'none'
     isSondStart = true
@@ -130,7 +134,8 @@ const nextPrevSong = () => {
 
 
 const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
-
+    nextBtn.classList.remove('disable')
+    prevbtn.classList.remove('disable')
     const music_player_image = document.querySelector('.music_player_image img')
     const music_player_title = document.querySelector('.music_player_text h3')
     const music_player_artist = document.querySelector('.music_player_text p')
@@ -165,7 +170,6 @@ const playSong = (isPlaying) => {
     if (!isPlaying) {
         list_items[currentIndex].querySelector('.playing_indicator')
             .innerHTML = `<i class="material-icons">play_arrow</i>`
-        console.log(list_items[currentIndex].querySelector('.playing_indicator'))
         return audio.pause()
     }
 
@@ -298,7 +302,6 @@ listen_style_icon.addEventListener('click', setListenStyle)
 
 
 document.addEventListener('keydown', (event) => {
-    console.log(event.key)
     if (event.key === 'ArrowRight') {
         currentIndex = currentIndex < songsList.length - 1 ? currentIndex + 1 : 0
         nextPrevSong()

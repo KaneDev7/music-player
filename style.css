@@ -217,6 +217,11 @@ body img {
     gap: 25px;
 }
 
+.disable{
+    opacity: .5;
+    pointer-events: none;
+}
+
 .music_player_middle i {
     font-size: 40px;
 }

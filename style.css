@@ -368,7 +368,7 @@ body img {
     width: 40vw;
     min-width: 500px;
     position: absolute;
-    right: -22vw;
+    right: -20vw;
     top: 50%;
     transform:  translatey(-50%);
 }

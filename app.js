@@ -8,6 +8,8 @@ const palyPauseIcon = document.querySelector('.palyPauseIcon i')
 const audio = document.querySelector('audio')
 const nextBtn = document.querySelector('.nextBtn')
 const prevbtn = document.querySelector('.prevBtn')
+const disk = document.querySelector('.disk')
+const lecteur = document.querySelector('.lecteur')
 const music_player_loader = document.querySelector('.music_player_loader')
 const listen_style_icon = document.querySelector('.listen_style_icon i')
 const music_player_progressBar = document.querySelector('.music_player_progressBar')
@@ -27,7 +29,7 @@ let currentTime = 0
 let rotateValue = 0
 let volume = 10
 
-const colors = ['#FFF7D4', '#FFD95A', '#C07F00','#fcbd00','#fff']
+const colors = ['#FFF7D4', '#FFD95A', '#C07F00', '#fcbd00', '#fff']
 // const colors = ['#fff', '#fcbd00']
 
 const url = 'https://shazam.p.rapidapi.com/charts/track?pageSize=8'
@@ -137,6 +139,7 @@ const nextPrevSong = () => {
 const loadAudio = ({ artist, title, uri, coverart, background, isPlaying }) => {
     nextBtn.classList.remove('disable')
     prevbtn.classList.remove('disable')
+
     const music_player_image = document.querySelector('.music_player_image img')
     const music_player_title = document.querySelector('.music_player_text h3')
     const music_player_artist = document.querySelector('.music_player_text p')
@@ -171,6 +174,8 @@ const playSong = (isPlaying) => {
     if (!isPlaying) {
         list_items[currentIndex].querySelector('.playing_indicator')
             .innerHTML = `<i class="material-icons" style="color: #f5cb4e;" >play_arrow</i>`
+        lecteur.classList.remove('palying')
+        disk.classList.remove('diskRotate')
         return audio.pause()
     }
 
@@ -181,6 +186,8 @@ const playSong = (isPlaying) => {
     `
     audio.play()
     audio.crossOrigin = "anonymous";
+    lecteur.classList.add('palying')
+    setTimeout(() => {disk.classList.add('diskRotate')},1000)
 }
 
 // controll
@@ -210,7 +217,7 @@ audio.addEventListener('loadeddata', (event) => {
     const durationEl = document.querySelector('.music_player_timer .duration')
     duration = audio.duration
     durationEl.innerText = formatTime(duration)
-    setTimeout(() => { music_player_image.style.transition = '1s' }, 0)
+    setTimeout(() => { disk.style.transition = '1s' }, 0)
 })
 
 
@@ -223,8 +230,8 @@ audio.addEventListener('timeupdate', event => {
     const width = currentTime / duration * 100
     currentTimeEl.innerText = formatTime(currentTime)
     music_player_progress.style.width = width + '%'
-    // rotateValue = currentTime * 10
-    // music_player_image.style.transform = `rotate(${rotateValue}deg)`
+    rotateValue = currentTime * 10
+    disk.style.transform = `rotate(${-rotateValue}deg)`
 })
 
 
@@ -277,7 +284,7 @@ music_player_progressBar.addEventListener('click', (e) => {
     const newTime = percentage * audio.duration;
     rotateValue = rotateValue + newTime
     audio.currentTime = newTime;
-    // music_player_image.style.transform = `rotate(${rotateValue}deg)`
+    disk.style.transform = `rotate(${-rotateValue}deg)`
 })
 
 
@@ -337,27 +344,26 @@ prevbtn.addEventListener('click', () => {
     nextPrevSong()
 })
 
-function playPauseSong(event){
-    // event.stopPropagation()
-    console.log(this)
-        isPlay = !isPlay
-    
-        if (!isSondStart) {
-            loadAudio({
-                artist: songsList[currentIndex]?.artist,
-                title: songsList[currentIndex]?.title,
-                uri: songsList[currentIndex]?.uri,
-                coverart: `/images/lflf.jpeg`,
-                background: `/images/lflf.jpeg`,
-                isPlaying: true
-            })
-            audioVisualisation()
-            return isSondStart = true
-        } else {
-            playSong(isPlay)
-        }
-    
+function playPauseSong() {
+
+    isPlay = !isPlay
+
+    if (!isSondStart) {
+        loadAudio({
+            artist: songsList[currentIndex]?.artist,
+            title: songsList[currentIndex]?.title,
+            uri: songsList[currentIndex]?.uri,
+            coverart: `/images/lflf.jpeg`,
+            background: `/images/lflf.jpeg`,
+            isPlaying: true
+        })
+        audioVisualisation()
+        return isSondStart = true
+    } else {
+        playSong(isPlay)
     }
+
+}
 
 
 palyPauseIcon.addEventListener('click', playPauseSong)

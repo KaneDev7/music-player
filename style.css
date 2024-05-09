@@ -11,12 +11,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     height: 100vh;
     font-family: poppins, sans-serif;
-    background: url('/images/bg.png');
+    background: rgb(33, 33, 33);
+    background: url('/images/lflf.png');
+    background-repeat: no-repeat;
     background-size: cover;
-    background-repeat: no-repeat; 
-    
+    position: relative;
+    overflow: hidden;    
 }
 
 body img {
@@ -26,7 +29,7 @@ body img {
 
 .music_player_warpper {
     position: relative;
-    width: 380px;
+    width: 500px;
     overflow: hidden;
     border-radius: 10px;
     margin: 20px;
@@ -52,7 +55,7 @@ body img {
 .music_player {
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, #000000c3 42%, #000000f6 100%);
+    background: linear-gradient(180deg, #000000c9 42%, #000000f6 100%);
     padding: 30px 20px;
     position: relative;
 }
@@ -359,4 +362,44 @@ body img {
     .music_player_image {
         width: 260px;
     }
+}
+
+.diskBox{
+    width: 40vw;
+    min-width: 500px;
+    position: absolute;
+    right: -22vw;
+    top: 50%;
+    transform:  translatey(-50%);
+}
+
+.disk_container{
+    position: relative;
+}
+
+.lecteur{
+    width: 50%;
+    position: absolute;
+    right: 70%;
+    top: -20%;
+    transform: rotate(50deg);
+    transition: .5s;
+    z-index: 1;
+
+}
+
+.lecteur.palying{
+    transform-origin:  left top ;
+    transform: rotate(0deg);
+}
+
+.disk img{
+    width: 100%;
+    border-radius: 50%;
+    box-shadow:  0 0 20px #ffffff5b;
+    transition: 1s;
+}
+
+.diskRotate img{
+    box-shadow:  0 0 30px #e6af08af;
 }

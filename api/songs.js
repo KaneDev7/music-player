@@ -1,6 +1,4 @@
-const songsList = [
-
-
+const songsList = [    
     {
         artist: 'Dip doundou guiss',
         title : 'Intro',

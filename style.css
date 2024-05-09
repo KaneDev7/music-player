@@ -134,7 +134,7 @@ body img {
     border-right: 12px solid transparent;
     border-left: 12px solid transparent;
     transform-origin: top left;
-    transition: .3s;
+    transition: .4s;
     z-index: 1;
 }
 

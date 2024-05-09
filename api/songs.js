@@ -1,110 +1,132 @@
 const songsList = [
     {
+        artist: 'St. Lucia',
+        title : 'Elevate',
+        image : '/images/pes16/elevate.JPG',
+        uri : '/audios/pes16/elevate.mp3' 
+    },
+
+    {
+        artist: 'Vinyl Theatre',
+        title : 'Shine On',
+        image : '/images/pes16/Vinyl_Theatre_Shine_On.JPG',
+        uri : '/audios/pes16/Vinyl_Theatre_Shine_On.mp3' 
+    },
+
+    {
+        artist: 'Broken Bells',
+        title : 'After the Disco',
+        image : '/images/pes16/Broken_Bells.JPG',
+        uri : '/audios/pes16/Broken_Bells.mp3' 
+    },
+    
+    {
         artist: 'Dip doundou guiss',
         title : 'Intro',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Intro.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : '40e jour',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/40e_jour.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Ñafal',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Ñafal.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Jëli li des',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Jëli_li_des.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'TOP 5',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/TOP_5.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Sunshine',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Sunshine.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Destin',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Destin.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Doon benn',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Doon_benn.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Sama nigga (Interlude)',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Sama_nigga_Interlude.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Dee ci yaw',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Dee_ci_yaw.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Homie',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Homie.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : ' WNPWY (Wàcc na pare wàccoog yéen)',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/WNPWY_Wàcc_na_pare_wàccoog_yéen.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Seetu',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Seetu.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Ci naka',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Ci_naka.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'UKTV (U know the vibe)',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/UKTV_U_know_the_vibe.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Suba',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Suba.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Tefess',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Tefess.mp3' 
     },
     {
         artist: 'Dip doundou guiss',
         title : 'Ñetti at ci ren',
-        image : '',
+        image : '/images/lflf.JPEG',
         uri : '/audios/Ñetti_at_ci_ren.mp3' 
     },
+  
 ]

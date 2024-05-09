@@ -52,7 +52,7 @@ body img {
 .music_player {
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, #000000df 42%, #000000c8 100%);
+    background: linear-gradient(180deg, #000000c3 42%, #000000f6 100%);
     padding: 30px 20px;
     position: relative;
 }
@@ -170,7 +170,7 @@ body img {
     position: absolute;
     cursor: pointer;
     inset: 0;
-    background: #f6ebcb;
+    background: #f6d36a;
     border-radius: 10px;
     pointer-events: none;
 }
@@ -184,7 +184,7 @@ body img {
     top: 50%;
     right: -5px;
     transform: translateY(-50%);
-    background: #f6ebcb;
+    background: #f6d36a;
 }
 
 .music_player_slide_volume {

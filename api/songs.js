@@ -1,25 +1,6 @@
 const songsList = [
-    {
-        artist: 'St. Lucia',
-        title : 'Elevate',
-        image : '/images/pes16/elevate.JPG',
-        uri : '/audios/pes16/elevate.mp3' 
-    },
 
-    {
-        artist: 'Vinyl Theatre',
-        title : 'Shine On',
-        image : '/images/pes16/Vinyl_Theatre_Shine_On.JPG',
-        uri : '/audios/pes16/Vinyl_Theatre_Shine_On.mp3' 
-    },
 
-    {
-        artist: 'Broken Bells',
-        title : 'After the Disco',
-        image : '/images/pes16/Broken_Bells.JPG',
-        uri : '/audios/pes16/Broken_Bells.mp3' 
-    },
-    
     {
         artist: 'Dip doundou guiss',
         title : 'Intro',

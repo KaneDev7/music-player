@@ -58,7 +58,7 @@ const insertSongListFromLocal = () => {
 
         return `<li class="list_item"  onclick="playSongOnClick('${index}')">
                     <div class="list_item_sound">
-                        <img src="${item.image}" alt="">
+                        <img src="/images/lflf.jpeg" alt="">
                         <div class="list_item_text">
                             <h4>${troncText(item?.title, 15)} </h4>
                             <p>${item.artist}</p>
@@ -108,8 +108,8 @@ const playSongOnClick = (index) => {
         artist: songsList[currentIndex]?.artist,
         title: songsList[currentIndex]?.title,
         uri: songsList[currentIndex]?.uri,
-        coverart: songsList[currentIndex]?.image,
-        background: songsList[currentIndex]?.image,
+        coverart: `/images/lflf.jpeg`,
+        background: `/images/lflf.jpeg`,
         isPlaying: true
     })
 
@@ -127,8 +127,8 @@ const nextPrevSong = () => {
         artist: songsList[currentIndex]?.artist,
         title: songsList[currentIndex]?.title,
         uri: songsList[currentIndex]?.uri,
-        coverart: songsList[currentIndex]?.image,
-        background: songsList[currentIndex]?.image,
+        coverart: `/images/lflf.jpeg`,
+        background: `/images/lflf.jpeg`,
         isPlaying: true
     })
 }
@@ -252,8 +252,8 @@ audio.addEventListener('ended', () => {
                 artist: songsList[currentIndex]?.artist,
                 title: songsList[currentIndex]?.title,
                 uri: songsList[currentIndex]?.uri,
-                coverart: songsList[currentIndex]?.image,
-                background: songsList[currentIndex]?.image,
+                coverart: `/images/lflf.jpeg`,
+                background: `/images/lflf.jpeg`,
                 isPlaying: true
             })
             break
@@ -316,8 +316,8 @@ document.addEventListener('keydown', (event) => {
                 artist: songsList[currentIndex]?.artist,
                 title: songsList[currentIndex]?.title,
                 uri: songsList[currentIndex]?.uri,
-                coverart: songsList[currentIndex]?.image,
-                background: songsList[currentIndex]?.image,
+                coverart: `/images/lflf.jpeg`,
+                background: `/images/lflf.jpeg`,
                 isPlaying: true
             })
             audioVisualisation()
@@ -347,8 +347,8 @@ function playPauseSong(event){
                 artist: songsList[currentIndex]?.artist,
                 title: songsList[currentIndex]?.title,
                 uri: songsList[currentIndex]?.uri,
-                coverart: songsList[currentIndex]?.image,
-                background: songsList[currentIndex]?.image,
+                coverart: `/images/lflf.jpeg`,
+                background: `/images/lflf.jpeg`,
                 isPlaying: true
             })
             audioVisualisation()

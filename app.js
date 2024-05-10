@@ -176,6 +176,7 @@ const playSong = (isPlaying) => {
             .innerHTML = `<i class="material-icons" style="color: #f5cb4e;" >play_arrow</i>`
         lecteur.classList.remove('palying')
         disk.classList.remove('diskRotate')
+        music_player_image.classList.remove('coverartActif')
         return audio.pause()
     }
 
@@ -187,7 +188,8 @@ const playSong = (isPlaying) => {
     audio.play()
     audio.crossOrigin = "anonymous";
     lecteur.classList.add('palying')
-    setTimeout(() => {disk.classList.add('diskRotate')},1000)
+    music_player_image.classList.add('coverartActif')
+    setTimeout(() => { disk.classList.add('diskRotate')},1000)
 }
 
 // controll

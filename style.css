@@ -118,13 +118,20 @@ body img {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    filter: saturate(50%);
+    transition: 1s;
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    box-shadow: 0px 0px 40px #febf01b3;
     border-radius: inherit;
     z-index: 2;
+}
 
+.coverartActif{
+    box-shadow: 0px 0px 40px #febf0181;
+}
+.coverartActif img{
+    filter: saturate(100%);
 }
 
 .music_player_image .element {

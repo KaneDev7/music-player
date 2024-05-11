@@ -355,22 +355,6 @@ body img {
 }
 
 
-@media screen and (max-width: 380px) {
-    /* .music_player_warpper {
-        height: 99vh;
-    } */
-
-    /* .music_player_slide_volume {
-        display: none;
-    } */
-}
-
-@media screen and (max-width: 375px) {
-    .music_player_image {
-        width: 260px;
-    }
-}
-
 .diskBox{
     width: 40vw;
     min-width: 500px;

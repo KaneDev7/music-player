@@ -414,15 +414,7 @@ const audioVisualisation = () => {
         for (let i = 0; i < bufferLength; i++) {
             let item = dataArray[i];
             item = item > 140 ? item / 4 : item * 1.5
-            if (window.innerWidth <= 380) {
-                elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 130)}px)`;
-            } else if (window.innerWidth <= 360) {
-                elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 115)}px)`;
-            } else {
-                elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 128, 135)}px)`;
-            }
-
-
+            elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 128, 135)}px)`;
         }
         requestAnimationFrame(update)
 

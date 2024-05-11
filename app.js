@@ -29,7 +29,7 @@ let currentTime = 0
 let rotateValue = 0
 let volume = 10
 
-const colors = ['#FFF7D4', '#FFD95A', '#C07F00', '#fcbd00', '#fff']
+const colors = ['#FFF7D4', '#FFD95A', '#C07F00', '#fcbd00', '#fff',]
 // const colors = ['#fff', '#fcbd00']
 
 const url = 'https://shazam.p.rapidapi.com/charts/track?pageSize=8'
@@ -390,7 +390,7 @@ const audioVisualisation = () => {
     const source = audioContext.createMediaElementSource(audio)
     source.connect(analyser)
     source.connect(audioContext.destination)
-    analyser.fftSize = 128
+    analyser.fftSize = 256
     const bufferLength = analyser.frequencyBinCount
     let dataArray = new Uint8Array(bufferLength)
 
@@ -413,13 +413,13 @@ const audioVisualisation = () => {
 
         for (let i = 0; i < bufferLength; i++) {
             let item = dataArray[i];
-            item = item > 150 ? item / 1.5 : item * 1.5;
+            item = item > 140 ? item / 4 : item * 1.5
             if (window.innerWidth <= 380) {
                 elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 130)}px)`;
             } else if (window.innerWidth <= 360) {
                 elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 115)}px)`;
             } else {
-                elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 100, 135)}px)`;
+                elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 128, 135)}px)`;
             }
 
 

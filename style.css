@@ -140,8 +140,9 @@ body img {
     left: 50%;
     transform: translate(-50%, -50%);
     display: inline-block;
-    border-right: 15px solid transparent;
-    border-left: 15px solid transparent;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+
     transform-origin: top left;
     transition: .4s;
     z-index: 1;
@@ -402,10 +403,10 @@ body img {
 .disk img{
     width: 100%;
     border-radius: 50%;
-    box-shadow:  0 0 20px #ffffff5b;
+    box-shadow:  0 0 5px #ffffff;
     transition: 1s;
 }
 
 .diskRotate img{
-    box-shadow:  0 0 30px #e6af08af;
-}
+    box-shadow:  0 0 30px #e6af08;
+} 

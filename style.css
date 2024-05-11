@@ -43,7 +43,7 @@ body img {
     background-size: cover;
     position: absolute;
     inset: 0;
-    filter: blur(7px);
+    filter: blur(4px);
 }
 
 .music_player_bg img {

@@ -96,8 +96,8 @@ const insertDurationOnElelement = () => {
 
 
 const playSongOnClick = (index) => {
-    music_player_image.style.transition = 'none'
-    music_player_image.style.transform = 'none'
+    disk.style.transition = 'none'
+    disk.style.transform = 'none'
     currentIndex = Number(index)
     isPlay = true
 
@@ -120,8 +120,8 @@ const playSongOnClick = (index) => {
 
 const nextPrevSong = () => {
 
-    music_player_image.style.transition = 'none'
-    music_player_image.style.transform = 'none'
+    disk.style.transition = 'none'
+    disk.style.transform = 'none'
     isSondStart = true
     isPlay = true
 
@@ -238,10 +238,10 @@ audio.addEventListener('timeupdate', event => {
 
 
 audio.addEventListener('ended', () => {
-    music_player_image.style.transition = 'none'
-    music_player_image.style.transform = 'none'
+    disk.style.transition = 'none'
+    disk.style.transform = 'none'
 
-    setTimeout(() => { music_player_image.style.transition = '1s' }, 10)
+    setTimeout(() => { disk.style.transition = '1s' }, 10)
 
     switch (listenSstyle) {
         case 'repeat':

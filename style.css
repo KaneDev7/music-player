@@ -118,7 +118,7 @@ body img {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    filter: saturate(50%);
+    filter: saturate(40%);
     transition: 1s;
     width: 100%;
     aspect-ratio: 1 / 1;

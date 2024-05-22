@@ -114,8 +114,6 @@ const playSongOnClick = (index) => {
         background: `/images/lflf.jpeg`,
         isPlaying: true
     })
-
-
 }
 
 const nextPrevSong = () => {
@@ -304,7 +302,6 @@ function formatTime(currentTime) {
     return minutes + ":" + secondsString;
 }
 
-
 // Event controll
 show_list_icon.addEventListener('click', toogleShowList)
 close_list_icon.addEventListener('click', toogleShowList)
@@ -364,12 +361,10 @@ function playPauseSong() {
     } else {
         playSong(isPlay)
     }
-
 }
 
 
 palyPauseIcon.addEventListener('click', playPauseSong)
-
 
 insertSongListFromLocal()
 
@@ -414,10 +409,9 @@ const audioVisualisation = () => {
         for (let i = 0; i < bufferLength; i++) {
             let item = dataArray[i];
             item = item > 140 ? item / 4 : item * 1.5
-            elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 128, 135)}px)`;
+            elements[i].style.transform = `rotateZ(${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item, 126, 132)}px)`;
         }
         requestAnimationFrame(update)
-
     }
     update()
 }
